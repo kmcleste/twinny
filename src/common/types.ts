@@ -1,6 +1,7 @@
 import { InlineCompletionItem, InlineCompletionList } from 'vscode'
 import { CodeLanguageDetails } from './languages'
-import { ALL_BRACKETS, SYMMETRY_DATA_MESSAGE } from './constants'
+import { ALL_BRACKETS } from './constants'
+// import { ALL_BRACKETS, SYMMETRY_DATA_MESSAGE } from './constants'
 
 export interface StreamBodyBase {
   stream: boolean
@@ -8,16 +9,18 @@ export interface StreamBodyBase {
   temperature?: number
 }
 
-export interface StreamOptionsOllama extends StreamBodyBase {
-  model: string
-  keep_alive?: string | number
-  messages?: Message[] | Message
-  prompt: string
-  options: Record<string, unknown>
-}
+// export interface StreamOptionsOllama extends StreamBodyBase {
+//   model: string
+//   keep_alive?: string | number
+//   messages?: Message[] | Message
+//   prompt: string
+//   options: Record<string, unknown>
+// }
 
 export interface StreamBodyOpenAI extends StreamBodyBase {
+  model: string
   messages?: Message[] | Message
+  prompt?: string
   max_tokens: number
 }
 
@@ -158,13 +161,17 @@ export interface UiTabs {
   [key: string]: JSX.Element
 }
 
+// export const ApiProviders = {
+//   LiteLLM: 'litellm',
+//   LlamaCpp: 'llamacpp',
+//   LMStudio: 'lmstudio',
+//   Ollama: 'ollama',
+//   Oobabooga: 'oobabooga',
+//   OpenWebUI: 'openwebui',
+// } as const
+
 export const ApiProviders = {
-  LiteLLM: 'litellm',
-  LlamaCpp: 'llamacpp',
-  LMStudio: 'lmstudio',
-  Ollama: 'ollama',
-  Oobabooga: 'oobabooga',
-  OpenWebUI: 'openwebui',
+  vLLM: 'vllm'
 } as const
 
 export interface ApiModel {
@@ -216,29 +223,30 @@ export interface InferenceProvider {
   type: (typeof ApiProviders)[keyof typeof ApiProviders]
 }
 
-export interface Peer {
-  publicKey: Buffer;
-  write: (value: string) => boolean;
-  on: (key: string, cb: (data: Buffer) => void) => void;
-  once: (key: string, cb: (data: Buffer) => void) => void;
-  writable: boolean;
-  key: string;
-  discovery_key: string;
-}
+// export interface Peer {
+//   publicKey: Buffer;
+//   write: (value: string) => boolean;
+//   on: (key: string, cb: (data: Buffer) => void) => void;
+//   once: (key: string, cb: (data: Buffer) => void) => void;
+//   writable: boolean;
+//   key: string;
+//   discovery_key: string;
+// }
 
-export interface SymmetryMessage<T> {
-  key: string;
-  data: T;
-}
+// export interface SymmetryMessage<T> {
+//   key: string;
+//   data: T;
+// }
 
-export type ServerMessageKey = keyof typeof SYMMETRY_DATA_MESSAGE;
+// export type ServerMessageKey = keyof typeof SYMMETRY_DATA_MESSAGE;
 
-export interface SymmetryConnection {
-  sessionToken?: string
-  discoveryKey?: string
-  modelName?: string
-}
-export interface InferenceRequest {
-  key: string;
-  messages: Message[];
-}
+// export interface SymmetryConnection {
+//   sessionToken?: string
+//   discoveryKey?: string
+//   modelName?: string
+// }
+
+// export interface InferenceRequest {
+//   key: string;
+//   messages: Message[];
+// }

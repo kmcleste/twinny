@@ -133,22 +133,22 @@ export async function activate(context: ExtensionContext) {
         }
       } as ServerMessage<string>)
     }),
-    commands.registerCommand(
-      TWINNY_COMMAND_NAME.twinnySymmetryTab,
-      async () => {
-        commands.executeCommand(
-          'setContext',
-          EXTENSION_CONTEXT_NAME.twinnySymmetryTab,
-          true
-        )
-        sidebarProvider.view?.webview.postMessage({
-          type: EVENT_NAME.twinnySetTab,
-          value: {
-            data: WEBUI_TABS.symmetry
-          }
-        } as ServerMessage<string>)
-      }
-    ),
+    // commands.registerCommand(
+    //   TWINNY_COMMAND_NAME.twinnySymmetryTab,
+    //   async () => {
+    //     commands.executeCommand(
+    //       'setContext',
+    //       EXTENSION_CONTEXT_NAME.twinnySymmetryTab,
+    //       true
+    //     )
+    //     sidebarProvider.view?.webview.postMessage({
+    //       type: EVENT_NAME.twinnySetTab,
+    //       value: {
+    //         data: WEBUI_TABS.symmetry
+    //       }
+    //     } as ServerMessage<string>)
+    //   }
+    // ),
     commands.registerCommand(
       TWINNY_COMMAND_NAME.conversationHistory,
       async () => {
@@ -189,11 +189,11 @@ export async function activate(context: ExtensionContext) {
         EXTENSION_CONTEXT_NAME.twinnyConversationHistory,
         false
       )
-      commands.executeCommand(
-        'setContext',
-        EXTENSION_CONTEXT_NAME.twinnySymmetryTab,
-        false
-      )
+      // commands.executeCommand(
+      //   'setContext',
+      //   EXTENSION_CONTEXT_NAME.twinnySymmetryTab,
+      //   false
+      // )
       commands.executeCommand(
         'setContext',
         EXTENSION_CONTEXT_NAME.twinnyManageProviders,

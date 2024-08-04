@@ -13,7 +13,6 @@
     "private",
     "twinny",
     "ai",
-    "ollama",
     "llama",
     "development",
     "extension",
@@ -88,39 +87,34 @@
           "when": "view == twinny.sidebar && twinnyManageTemplates || view == twinny.sidebar && twinnyManageProviders || view == twinny.sidebar && twinnyConversationHistory || view == twinny.sidebar && twinnySymmetryTab"
         },
         {
-          "command": "twinny.symmetry",
+          "command": "twinny.manageProviders",
           "group": "navigation@1",
           "when": "view == twinny.sidebar"
         },
         {
-          "command": "twinny.manageProviders",
-          "group": "navigation@2",
-          "when": "view == twinny.sidebar"
-        },
-        {
           "command": "twinny.manageTemplates",
-          "group": "navigation@3",
+          "group": "navigation@2",
           "when": "view == twinny.sidebar"
         },
         {
           "command": "twinny.templates",
           "when": "view == twinny.sidebar",
-          "group": "navigation@4"
+          "group": "navigation3"
         },
         {
           "command": "twinny.conversationHistory",
           "when": "view == twinny.sidebar",
-          "group": "navigation@5"
+          "group": "navigation@4"
         },
         {
           "command": "twinny.newConversation",
           "when": "view == twinny.sidebar",
-          "group": "navigation@6"
+          "group": "navigation@5"
         },
         {
           "command": "twinny.settings",
           "when": "view == twinny.sidebar",
-          "group": "navigation@7"
+          "group": "navigation@6"
         }
       ]
     },
@@ -173,12 +167,6 @@
         "shortTitle": "twinny settings",
         "title": "Open twinny settings",
         "icon": "$(gear)"
-      },
-      {
-        "command": "twinny.symmetry",
-        "shortTitle": "twinny symmetry network",
-        "title": "Symmetry network settings",
-        "icon": "$(mirror-public)"
       },
       {
         "command": "twinny.conversationHistory",
@@ -341,49 +329,11 @@
           "default": true,
           "description": "Enable this setting to allow twinny to keep making subsequent completion requests to the API after the last completion request was accepted."
         },
-        "twinny.ollamaHostname": {
-          "order": 13,
-          "type": "string",
-          "default": "0.0.0.0",
-          "description": "Hostname for Ollama API.",
-          "required": true
-        },
-        "twinny.ollamaApiPort": {
-          "order": 14,
-          "type": "number",
-          "default": 11434,
-          "description": "The API port usually `11434`",
-          "required": false
-        },
-        "twinny.keepAlive": {
-          "order": 15,
-          "type": "string",
-          "default": "5m",
-          "description": "Keep models in memory by making requests with keep_alive=-1. Applicable only for Ollama API."
-        },
-        "twinny.ollamaUseTls": {
-          "order": 16,
-          "type": "boolean",
-          "default": false,
-          "description": "Enables TLS encryption Ollama API connections."
-        },
         "twinny.enableLogging": {
-          "order": 17,
+          "order": 13,
           "type": "boolean",
           "default": true,
           "description": "Enable twinny debug mode"
-        },
-        "twinny.symmetryModelName": {
-          "order": 18,
-          "type": "string",
-          "default": "llama3.1:latest",
-          "description": "The symmetry model name for chat."
-        },
-        "twinny.symmetryServerKey": {
-          "order": 19,
-          "type": "string",
-          "description": "The symmetry master server key.",
-          "default": "4b4a9cc325d134dee6679e9407420023531fd7e96c563f6c5d00fd5549b77435"
         }
       }
     }
@@ -416,7 +366,7 @@
     "@typescript-eslint/eslint-plugin": "^5.31.0",
     "@typescript-eslint/parser": "^5.31.0",
     "@vscode/test-electron": "^2.3.10",
-    "@vscode/vsce": "^2.18.0",
+    "@vscode/vsce": "^2.31.1",
     "copy-webpack-plugin": "^12.0.2",
     "css-loader": "^6.8.1",
     "esbuild": "^0.21.4",

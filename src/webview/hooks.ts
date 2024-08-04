@@ -5,10 +5,10 @@ import {
   WORKSPACE_STORAGE_KEY,
   EVENT_NAME,
   PROVIDER_EVENT_NAME,
-  EXTENSION_SESSION_NAME
+  // EXTENSION_SESSION_NAME
 } from '../common/constants'
 import {
-  ApiModel,
+  // ApiModel,
   ClientMessage,
   Conversation,
   LanguageType,
@@ -391,26 +391,26 @@ export const useConversationHistory = () => {
   }
 }
 
-export const useOllamaModels = () => {
-  const [models, setModels] = useState<ApiModel[] | undefined>([])
-  const handler = (event: MessageEvent) => {
-    const message: ServerMessage<ApiModel[]> = event.data
-    if (message?.type === EVENT_NAME.twinnyFetchOllamaModels) {
-      setModels(message?.value.data)
-    }
-    return () => window.removeEventListener('message', handler)
-  }
+// export const useOllamaModels = () => {
+//   const [models, setModels] = useState<ApiModel[] | undefined>([])
+//   const handler = (event: MessageEvent) => {
+//     const message: ServerMessage<ApiModel[]> = event.data
+//     if (message?.type === EVENT_NAME.twinnyFetchOllamaModels) {
+//       setModels(message?.value.data)
+//     }
+//     return () => window.removeEventListener('message', handler)
+//   }
 
-  useEffect(() => {
-    global.vscode.postMessage({
-      type: EVENT_NAME.twinnyFetchOllamaModels
-    })
-    window.addEventListener('message', handler)
-    return () => window.removeEventListener('message', handler)
-  }, [])
+//   useEffect(() => {
+//     global.vscode.postMessage({
+//       type: EVENT_NAME.twinnyFetchOllamaModels
+//     })
+//     window.addEventListener('message', handler)
+//     return () => window.removeEventListener('message', handler)
+//   }, [])
 
-  return { models }
-}
+//   return { models }
+// }
 
 const useAutosizeTextArea = (
   chatRef: React.RefObject<HTMLTextAreaElement> | null,
@@ -425,57 +425,57 @@ const useAutosizeTextArea = (
   }, [chatRef, value])
 }
 
-export const useSymmetryConnection = () => {
-  const [autoConnect, setAutoConnect] = useState(false)
-  const [connecting, setConnecting] = useState(false)
-  const { context: isConnected, setContext: setIsConnected } =
-    useSessionContext<boolean>(EXTENSION_SESSION_NAME.twinnySymmetryConnected)
+// export const useSymmetryConnection = () => {
+//   const [autoConnect, setAutoConnect] = useState(false)
+//   const [connecting, setConnecting] = useState(false)
+//   const { context: isConnected, setContext: setIsConnected } =
+//     useSessionContext<boolean>(EXTENSION_SESSION_NAME.twinnySymmetryConnected)
 
-  console.log('symmetry connected', isConnected)
+//   console.log('symmetry connected', isConnected)
 
-  const connectToSymmetry = () => {
-    setConnecting(true)
-    global.vscode.postMessage({
-      type: EVENT_NAME.twinnyConnectSymmetry
-    } as ClientMessage)
-  }
+//   const connectToSymmetry = () => {
+//     setConnecting(true)
+//     global.vscode.postMessage({
+//       type: EVENT_NAME.twinnyConnectSymmetry
+//     } as ClientMessage)
+//   }
 
-  const disconnectSymmetry = () => {
-    setConnecting(true)
-    global.vscode.postMessage({
-      type: EVENT_NAME.twinnyDisconnectSymmetry
-    } as ClientMessage)
-  }
+//   const disconnectSymmetry = () => {
+//     setConnecting(true)
+//     global.vscode.postMessage({
+//       type: EVENT_NAME.twinnyDisconnectSymmetry
+//     } as ClientMessage)
+//   }
 
-  const handler = (event: MessageEvent) => {
-    const message: ServerMessage<ApiModel[]> = event.data
-    if (message?.type === EVENT_NAME.twinnyConnectedToSymmetry) {
-      setConnecting(false)
-      setIsConnected(true)
-    }
-    if (message?.type === EVENT_NAME.twinnyDisconnectedFromSymmetry) {
-      setConnecting(false)
-      setIsConnected(false)
-    }
-    return () => window.removeEventListener('message', handler)
-  }
+//   const handler = (event: MessageEvent) => {
+//     const message: ServerMessage<ApiModel[]> = event.data
+//     if (message?.type === EVENT_NAME.twinnyConnectedToSymmetry) {
+//       setConnecting(false)
+//       setIsConnected(true)
+//     }
+//     if (message?.type === EVENT_NAME.twinnyDisconnectedFromSymmetry) {
+//       setConnecting(false)
+//       setIsConnected(false)
+//     }
+//     return () => window.removeEventListener('message', handler)
+//   }
 
-  useEffect(() => {
-    if (isConnected !== undefined) {
-      setIsConnected(isConnected)
-    }
-    window.addEventListener('message', handler)
-    return () => window.removeEventListener('message', handler)
-  }, [])
+//   useEffect(() => {
+//     if (isConnected !== undefined) {
+//       setIsConnected(isConnected)
+//     }
+//     window.addEventListener('message', handler)
+//     return () => window.removeEventListener('message', handler)
+//   }, [])
 
-  return {
-    connectToSymmetry,
-    disconnectSymmetry,
-    isConnected,
-    autoConnect,
-    setAutoConnect,
-    connecting
-  }
-}
+//   return {
+//     connectToSymmetry,
+//     disconnectSymmetry,
+//     isConnected,
+//     autoConnect,
+//     setAutoConnect,
+//     connecting
+//   }
+// }
 
 export default useAutosizeTextArea

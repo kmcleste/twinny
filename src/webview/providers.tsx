@@ -1,5 +1,6 @@
 import React from 'react'
-import { useOllamaModels, useProviders } from './hooks'
+import { useProviders } from './hooks'
+// import { useOllamaModels, useProviders } from './hooks'
 import {
   VSCodeButton,
   VSCodeDivider,
@@ -21,8 +22,8 @@ import { ModelSelect } from './model-select'
 export const Providers = () => {
   const [showForm, setShowForm] = React.useState(false)
   const [provider, setProvider] = React.useState<TwinnyProvider | undefined>()
-  const { models } = useOllamaModels()
-  const hasOllamaModels = !!models?.length
+  // const { models } = useOllamaModels()
+  // const hasOllamaModels = !!models?.length
   const { updateProvider } = useProviders()
   const { providers, removeProvider, copyProvider, resetProviders } =
     useProviders()
@@ -85,7 +86,7 @@ export const Providers = () => {
               {Object.values(providers).map((provider, index) => (
                 <div className={styles.provider} key={index}>
                   <div className={styles.providerHeader}>
-                    {provider.provider === ApiProviders.Ollama &&
+                    {/* {provider.provider === ApiProviders.Ollama &&
                       hasOllamaModels && (
                         <ModelSelect
                           models={models}
@@ -94,8 +95,8 @@ export const Providers = () => {
                             handleSetModel(provider, model)
                           }
                         />
-                      )}
-                    {provider.provider !== ApiProviders.Ollama && (
+                      )} */}
+                    {provider.provider === ApiProviders.vLLM && (
                       <VSCodeTextField
                         required
                         name="modelName"
@@ -103,7 +104,7 @@ export const Providers = () => {
                           handleChange(provider, e)
                         }}
                         value={provider.modelName}
-                        placeholder='Applicable for some providers like "Ollama"'
+                        placeholder='Applicable for some providers like "vLLM"'
                       ></VSCodeTextField>
                     )}
                     <div className={styles.providerActions}>
@@ -184,7 +185,7 @@ interface ProviderFormProps {
 
 function ProviderForm({ onClose, provider }: ProviderFormProps) {
   const isEditing = provider !== undefined
-  const { models } = useOllamaModels()
+  // const { models } = useOllamaModels()
   const { saveProvider, updateProvider } = useProviders()
   const [formState, setFormState] = React.useState<TwinnyProvider>(
     provider || DEFAULT_PROVIDER_FORM_VALUES
@@ -217,25 +218,25 @@ function ProviderForm({ onClose, provider }: ProviderFormProps) {
     onClose()
   }
 
-  const hasOllamaModels = !!models?.length
+  // const hasOllamaModels = !!models?.length
 
   const getModelInput = () => {
-    if (formState.provider === ApiProviders.Ollama && hasOllamaModels) {
-      return (
-        <>
-          <div>
-            <label htmlFor="modelName">Model name*</label>
-          </div>
-          <ModelSelect
-            models={models}
-            model={formState.modelName}
-            setModel={(model: string) => {
-              setFormState({ ...formState, modelName: model })
-            }}
-          />
-        </>
-      )
-    }
+    // if (formState.provider === ApiProviders.Ollama && hasOllamaModels) {
+    //   return (
+    //     <>
+    //       <div>
+    //         <label htmlFor="modelName">Model name*</label>
+    //       </div>
+    //       <ModelSelect
+    //         models={models}
+    //         model={formState.modelName}
+    //         setModel={(model: string) => {
+    //           setFormState({ ...formState, modelName: model })
+    //         }}
+    //       />
+    //     </>
+    //   )
+    // }
 
     return (
       <>
@@ -247,7 +248,7 @@ function ProviderForm({ onClose, provider }: ProviderFormProps) {
           name="modelName"
           onChange={handleChange}
           value={formState.modelName}
-          placeholder='Applicable for some providers like "Ollama"'
+          placeholder='Applicable for some providers like "vLLM"'
         ></VSCodeTextField>
       </>
     )

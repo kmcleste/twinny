@@ -84,12 +84,12 @@ export class ProviderManager {
     return {
       apiHostname: '0.0.0.0',
       apiPath: '/v1/chat/completions',
-      apiPort: 11434,
+      apiPort: 8000,
       apiProtocol: 'http',
       id: uuidv4(),
-      label: 'Ollama 7B Chat',
-      modelName: 'codellama:7b-instruct',
-      provider: ApiProviders.Ollama,
+      label: 'vLLM - Llama 3.1',
+      modelName: 'llama-3.1',
+      provider: ApiProviders.vLLM,
       type: 'chat'
     } as TwinnyProvider
   }
@@ -97,14 +97,14 @@ export class ProviderManager {
   getDefaultFimProvider() {
     return {
       apiHostname: '0.0.0.0',
-      apiPath: '/api/generate',
-      apiPort: 11434,
+      apiPath: '/v1/completions',
+      apiPort: 8000,
       apiProtocol: 'http',
       fimTemplate: FIM_TEMPLATE_FORMAT.codellama,
       label: 'Ollama 7B FIM',
       id: uuidv4(),
       modelName: 'codellama:7b-code',
-      provider: ApiProviders.Ollama,
+      provider: ApiProviders.vLLM,
       type: 'fim'
     } as TwinnyProvider
   }

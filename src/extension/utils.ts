@@ -22,7 +22,7 @@ import {
   StreamRequest,
   PrefixSuffix,
   Bracket,
-  ServerMessageKey
+  // ServerMessageKey
 } from '../common/types'
 import { supportedLanguages } from '../common/languages'
 import {
@@ -306,14 +306,18 @@ export const getChatDataFromProvider = (
   data: StreamResponse
 ) => {
   switch (provider) {
-    case ApiProviders.Ollama:
-    case ApiProviders.OpenWebUI:
+    // case ApiProviders.Ollama:
+    // case ApiProviders.OpenWebUI:
+    //   return data?.choices[0].delta?.content
+    //     ? data?.choices[0].delta.content
+    //     : ''
+    // case ApiProviders.LlamaCpp:
+    //   return data?.content
+    case ApiProviders.vLLM:
+      if (data?.choices[0].delta.content === 'undefined') return ''
       return data?.choices[0].delta?.content
         ? data?.choices[0].delta.content
         : ''
-    case ApiProviders.LlamaCpp:
-      return data?.content
-    case ApiProviders.LiteLLM:
     default:
       if (data?.choices[0].delta.content === 'undefined') return ''
       return data?.choices[0].delta?.content
@@ -327,13 +331,17 @@ export const getFimDataFromProvider = (
   data: StreamResponse | undefined
 ) => {
   switch (provider) {
-    case ApiProviders.Ollama:
-    case ApiProviders.OpenWebUI:
-      return data?.response
-    case ApiProviders.LlamaCpp:
-      return data?.content
-    case ApiProviders.LiteLLM:
-      return data?.choices[0].delta.content
+    // case ApiProviders.Ollama:
+    // case ApiProviders.OpenWebUI:
+    //   return data?.response
+    // case ApiProviders.LlamaCpp:
+    //   return data?.content
+    case ApiProviders.vLLM:
+      if (!data?.choices.length) return
+      if (data?.choices[0].text === 'undefined') {
+        return ''
+      }
+      return data?.choices[0].text ? data?.choices[0].text : ''
     default:
       if (!data?.choices.length) return
       if (data?.choices[0].text === 'undefined') {
@@ -433,9 +441,9 @@ export const getTerminalExists = (): boolean => {
   return true
 }
 
-export function createSymmetryMessage<T>(key: ServerMessageKey, data?: T): string {
-  return JSON.stringify({ key, data });
-}
+// export function createSymmetryMessage<T>(key: ServerMessageKey, data?: T): string {
+//   return JSON.stringify({ key, data });
+// }
 
 export const getSanitizedCommitMessage = (commitMessage: string) => {
   const sanitizedMessage = commitMessage

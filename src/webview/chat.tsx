@@ -12,7 +12,7 @@ import {
   WORKSPACE_STORAGE_KEY,
   EVENT_NAME,
   USER,
-  SYMMETRY_EMITTER_KEY
+  // SYMMETRY_EMITTER_KEY
 } from '../common/constants'
 
 import useAutosizeTextArea, {
@@ -85,9 +85,9 @@ export const Chat = () => {
           }
         ]
 
-        if (message.value.type === SYMMETRY_EMITTER_KEY.conversationTitle) {
-          return messages
-        }
+        // if (message.value.type === SYMMETRY_EMITTER_KEY.conversationTitle) {
+        //   return messages
+        // }
 
         saveLastConversation({
           ...conversation,

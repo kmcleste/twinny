@@ -14,7 +14,7 @@ import {
   ACTIVE_CHAT_PROVIDER_STORAGE_KEY,
   SYSTEM,
   USER,
-  SYMMETRY_EMITTER_KEY
+  // SYMMETRY_EMITTER_KEY
 } from '../common/constants'
 import {
   StreamResponse,
@@ -31,7 +31,7 @@ import { streamResponse } from './stream'
 import { createStreamRequestBody } from './provider-options'
 import { kebabToSentence } from '../webview/utils'
 import { TwinnyProvider } from './provider-manager'
-import { SymmetryService } from './symmetry-service'
+// import { SymmetryService } from './symmetry-service'
 
 export class ChatService {
   private _config = workspace.getConfiguration('twinny')
@@ -45,20 +45,20 @@ export class ChatService {
   private _temperature = this._config.get('temperature') as number
   private _templateProvider?: TemplateProvider
   private _view?: WebviewView
-  private _symmetryService?: SymmetryService
+  // private _symmetryService?: SymmetryService
 
   constructor(
     statusBar: StatusBarItem,
     templateDir: string,
     extensionContext: ExtensionContext,
     view: WebviewView,
-    symmetryService: SymmetryService
+    // symmetryService: SymmetryService
   ) {
     this._view = view
     this._statusBar = statusBar
     this._templateProvider = new TemplateProvider(templateDir)
     this._extensionContext = extensionContext
-    this._symmetryService = symmetryService
+    // this._symmetryService = symmetryService
     workspace.onDidChangeConfiguration((event) => {
       if (!event.affectsConfiguration('twinny')) {
         return
@@ -66,23 +66,23 @@ export class ChatService {
       this.updateConfig()
     })
 
-    this.setupSymmetryListeners()
+    // this.setupSymmetryListeners()
   }
 
-  private setupSymmetryListeners() {
-    this._symmetryService?.on(
-      SYMMETRY_EMITTER_KEY.inference,
-      (completion: string) => {
-        this._view?.webview.postMessage({
-          type: EVENT_NAME.twinnyOnCompletion,
-          value: {
-            completion: completion.trimStart(),
-            data: getLanguage()
-          }
-        } as ServerMessage)
-      }
-    )
-  }
+  // private setupSymmetryListeners() {
+  //   this._symmetryService?.on(
+  //     SYMMETRY_EMITTER_KEY.inference,
+  //     (completion: string) => {
+  //       this._view?.webview.postMessage({
+  //         type: EVENT_NAME.twinnyOnCompletion,
+  //         value: {
+  //           completion: completion.trimStart(),
+  //           data: getLanguage()
+  //         }
+  //       } as ServerMessage)
+  //     }
+  //   )
+  // }
 
   private getProvider = () => {
     const provider = this._extensionContext?.globalState.get<TwinnyProvider>(

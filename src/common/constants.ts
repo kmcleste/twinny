@@ -32,7 +32,7 @@ export const EVENT_NAME = {
   twinnyChatMessage: 'twinny-chat-message',
   twinnyClickSuggestion: 'twinny-click-suggestion',
   twinnyEnableModelDownload: 'twinny-enable-model-download',
-  twinnyFetchOllamaModels: 'twinny-fetch-ollama-models',
+  // twinnyFetchOllamaModels: 'twinny-fetch-ollama-models',
   twinnyGetConfigValue: 'twinny-get-config-value',
   twinnyGetGitChanges: 'twinny-get-git-changes',
   twinnyConnectSymmetry: 'twinny-connect-symmetry',
@@ -60,8 +60,8 @@ export const EVENT_NAME = {
   twinnyStopGeneration: 'twinny-stop-generation',
   twinnyTextSelection: 'twinny-text-selection',
   twinnyWorkspaceContext: 'twinny-workspace-context',
-  twinnyConnectedToSymmetry: 'twinny-connected-to-symmetry',
-  twinnyDisconnectedFromSymmetry : 'twinny-disconnected-from-symmetry',
+  // twinnyConnectedToSymmetry: 'twinny-connected-to-symmetry',
+  // twinnyDisconnectedFromSymmetry : 'twinny-disconnected-from-symmetry',
 }
 
 export const TWINNY_COMMAND_NAME = {
@@ -85,7 +85,7 @@ export const TWINNY_COMMAND_NAME = {
   stopGeneration: 'twinny.stopGeneration',
   templateCompletion: 'twinny.templateCompletion',
   templates: 'twinny.templates',
-  twinnySymmetryTab: 'twinny.symmetry',
+  // twinnySymmetryTab: 'twinny.symmetry',
 }
 
 export const CONVERSATION_EVENT_NAME = {
@@ -136,22 +136,22 @@ export const EXTENSION_SETTING_KEY = {
 
 export const EXTENSION_CONTEXT_NAME = {
   twinnyConversationHistory: 'twinnyConversationHistory',
-  twinnySymmetryTab: 'twinnySymmetryTab',
+  // twinnySymmetryTab: 'twinnySymmetryTab',
   twinnyGeneratingText: 'twinnyGeneratingText',
   twinnyManageProviders: 'twinnyManageProviders',
   twinnyManageTemplates: 'twinnyManageTemplates',
 }
 
-export const EXTENSION_SESSION_NAME = {
-  twinnySymmetryConnected: 'twinnySymmetryConnected'
-}
+// export const EXTENSION_SESSION_NAME = {
+//   twinnySymmetryConnected: 'twinnySymmetryConnected'
+// }
 
 export const WEBUI_TABS = {
   chat: 'chat',
   history: 'history',
   providers: 'providers',
   settings: 'templates',
-  symmetry: 'symmetry'
+  // symmetry: 'symmetry'
 }
 
 export const FIM_TEMPLATE_FORMAT = {
@@ -193,13 +193,13 @@ export const DEFAULT_PROVIDER_FORM_VALUES = {
   apiHostname: '0.0.0.0',
   apiKey: '',
   apiPath: '',
-  apiPort: 11434,
+  apiPort: 8000,
   apiProtocol: 'http',
   id: '',
   label: '',
   modelName: '',
   name: '',
-  provider: 'ollama',
+  provider: 'vllm',
   type: 'chat'
 }
 
@@ -302,24 +302,24 @@ export const MULTI_LINE_REACT = [
   'jsx_self_closing_element'
 ]
 
-export const SYMMETRY_DATA_MESSAGE = {
-  heartbeat: 'heartbeat',
-  inference: 'inference',
-  inferenceEnd: 'inferenceEnd',
-  join: 'join',
-  leave: 'leave',
-  newConversation: 'newConversation',
-  providerDetails: 'providerDetails',
-  reportCompletion: 'reportCompletion',
-  requestProvider: 'requestProvider',
-  sessionValid: 'sessionValid',
-  verifySession: 'verifySession',
-  disconnect: 'disconnect',
-  ping: 'ping',
-  pong: 'pong',
-} as const
+// export const SYMMETRY_DATA_MESSAGE = {
+//   heartbeat: 'heartbeat',
+//   inference: 'inference',
+//   inferenceEnd: 'inferenceEnd',
+//   join: 'join',
+//   leave: 'leave',
+//   newConversation: 'newConversation',
+//   providerDetails: 'providerDetails',
+//   reportCompletion: 'reportCompletion',
+//   requestProvider: 'requestProvider',
+//   sessionValid: 'sessionValid',
+//   verifySession: 'verifySession',
+//   disconnect: 'disconnect',
+//   ping: 'ping',
+//   pong: 'pong',
+// } as const
 
-export const SYMMETRY_EMITTER_KEY = {
-  inference: 'inference',
-  conversationTitle: 'conversationTitle',
-}
+// export const SYMMETRY_EMITTER_KEY = {
+//   inference: 'inference',
+//   conversationTitle: 'conversationTitle',
+// }
